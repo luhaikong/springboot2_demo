@@ -1,0 +1,55 @@
+
+spring:
+  application:
+    name: adminServer
+  datasource:
+    username: root
+    password: 123456
+    url: jdbc:mysql://10.180.120.250:3306/demo?useUnicode=true&characterEncoding=utf8&useSSL=false
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      minimum-idle: 3
+      maximum-pool-size: 10
+      max-lifetime: 30000
+      connection-test-query: SELECT 1
+  #  mail:
+  #    host: smtp.qq.com
+  #    username: 1031350293@qq.com
+  #    password: xnbhkdyoqodsbccf
+  #    default-encoding: UTF-8
+  #    properties:
+  #      from: 1031350293@qq.com
+  boot:
+    admin:
+      client:
+        url: http://localhost:8090/demo
+        instance:
+          service-base-url: http://localhost:8090
+
+server:
+  port: 8090
+  servlet:
+    context-path: /demo
+
+# ’Î∂‘ spring-boot-starter-actuator øÚº‹µƒ≈‰÷√
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+  server:
+    port: 8001
+
+logging:
+  level:
+    root: warn
+    com.example.demo.mapper: trace
+  file:
+    path: f:/log
+
+mybatis-plus:
+  mapper-locations:
+    classpath:mapper/*.xml
